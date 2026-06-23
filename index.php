@@ -30,7 +30,7 @@
 
             <form class="coffee-form" action="write.php" method="post">
                 <div class="form-field">
-                    <label for="shop">店名 <span class="required-label">必須</span></label>
+                    <label for="shop">店名  <span class="required-label">(必須)</span></label>
                     <input id="shop" type="text" name="shop" placeholder="例：清澄ロースタリー" required>
                 </div>
 
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="form-field">
-                    <label for="overall">総合評価 <span class="required-label">必須</span></label>
+                    <label for="overall">総合評価  <span class="required-label">(必須)</span></label>
                     <select id="overall" name="overall" required>
                         <option value="">選択してください</option>
                         <option value="5">5 — またすぐ飲みたい</option>
