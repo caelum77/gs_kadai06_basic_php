@@ -1,13 +1,18 @@
 <?php
-// input.php の入力を $_POST で受け取り、data/data.csv に1行追記
+// index.php の入力を $_POST で受け取り、data/data.csv に1行追記
 
-$shop = $_POST['shop'];
-$date = $_POST['date'];
-$origin = $_POST['origin'];
-$brew = $_POST['brew'];
-$price = $_POST['price'];
-$notes = $_POST['notes'];
-$overall = $_POST['overall'];
+$shop = preg_replace('/^[\s\p{Z}]+|[\s\p{Z}]+$/u', '', $_POST['shop'] ?? '');
+$date = $_POST['date'] ?? '';
+$origin = $_POST['origin'] ?? '';
+$brew = $_POST['brew'] ?? '';
+$price = $_POST['price'] ?? '';
+$notes = $_POST['notes'] ?? '';
+$overall = $_POST['overall'] ?? '';
+
+if ($shop === '' || !in_array($overall, ['1', '2', '3', '4', '5'], true)) {
+    header('Location: index.php?error=required');
+    exit;
+}
 
 //CSV書き込みなのでカンマ区切りでくっつける
 // $line = $shop . "," . $date . "," . $origin . "," . $brew . "," . $price . "," . $notes . "," . $overall . "\n";
@@ -28,7 +33,7 @@ fputcsv($file, [
 
 fclose($file);
 
-header('Location: input.php');
+header('Location: index.php');
 exit;
 
 ?>

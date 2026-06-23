@@ -9,7 +9,7 @@
 </head>
 <body>
     <header class="site-header">
-        <a class="brand" href="input.php" aria-label="MYコーヒー図鑑 トップ">
+        <a class="brand" href="index.php" aria-label="MYコーヒー図鑑 トップ">
             <span class="brand-mark" aria-hidden="true"></span>
             <span class="brand-name">MY COFFEE LIBRARY</span>
         </a>
@@ -24,10 +24,14 @@
                 <p class="lead">おいしかった記憶を、少しずつ集めていきましょう。</p>
             </div>
 
+            <?php if (($_GET['error'] ?? '') === 'required'): ?>
+                <p class="form-error" role="alert">店名と総合評価を入力してください。</p>
+            <?php endif; ?>
+
             <form class="coffee-form" action="write.php" method="post">
                 <div class="form-field">
-                    <label for="shop">店名</label>
-                    <input id="shop" type="text" name="shop" placeholder="例：清澄ロースタリー">
+                    <label for="shop">店名 <span class="required-label">必須</span></label>
+                    <input id="shop" type="text" name="shop" placeholder="例：清澄ロースタリー" required>
                 </div>
 
                 <div class="form-row">
@@ -61,8 +65,8 @@
                 </div>
 
                 <div class="form-field">
-                    <label for="overall">総合評価</label>
-                    <select id="overall" name="overall">
+                    <label for="overall">総合評価 <span class="required-label">必須</span></label>
+                    <select id="overall" name="overall" required>
                         <option value="">選択してください</option>
                         <option value="5">5 — またすぐ飲みたい</option>
                         <option value="4">4 — とてもおいしい</option>
